@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Login Cliente - Doa Cão</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" type="text/css" href="estiloformularios.css">
+        <link rel="icon" href="Imagens/logo.png">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+        <div class="sidenav">
+            <div class="text-center">
+                <img src="Imagens/logo.png" class="rounded" alt="...">
+              </div>
+            <div class="login-main-text">
+               <h2>Seja Bem Vindo!<br></h2>
+               <p>Ainda não possui uma conta?</p>
+               <div class="button-login">
+                    <div class ="d-grid  col-6 mx-auto">
+                        <button type="button" class=" btn-lg"><a href="cadastroCliente.html">Cadastre-se</a></button>
+                    </div>
+               </div>
+            </div>
+         </div>
+         
+        </div>
+         <div class="main">
+            <div class=" cadastro-titulo">
+                <div class="text-titulo">
+                   <h2>Login</h2>
+                   <p>Entre para continuar</p>
+                </div>
+            <div class="col-md-6 col-sm-12">
+               <div class="login-form">
+                  <form id="loginForm">
+                     <div class="form-group">
+                        <br><br><label>Digite seu email</label>
+                        <input id="email" type="text" class="form-control" placeholder="Digite o seu email"><br>
+                        <label>Digite sua senha</label>
+                        <input id="password" type="password" class="form-control" placeholder="Digite a sua senha"><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">Mantenha-me conectado</label>
+                            <p><a href="recuperarSenha.html">Esqueci minha senha</a></p>
+                        </div>
+                        <div class ="d-grid  col-12 mx-auto">
+                            <button onclick="fazerLogin()" type="submit" class="btn-lg"><a href="">Logar</a></button>
+                         </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+
+         <script>
+function fazerLogin() {
+  // Obtém os valores do formulário HTML
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  // Dados de login
+  const loginData = {
+    email: email,
+    password: password
+  };
+
+  console.log(loginData)
+
+  // Fazendo a solicitação de login
+  fetch("https://api-doacao.onrender.com/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(loginData)
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Verifica se a resposta da API possui o token e o ID
+      if (data.token && data.id) {
+        // Armazena o token e o ID no cache do navegador
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("id", data.id);
+
+        console.log("Login bem-sucedido! Token e ID armazenados em cache.");
+        // Redireciona para a página inicial
+        window.location.href = "pagina-inicial.html";
+      } else {
+        console.log("Erro de login. Por favor, verifique suas credenciais.");
+        alert("Erro de login. Por favor, verifique suas credenciais.");
+      }
+    })
+    .catch(error => {
+      console.log("Ocorreu um erro durante o login:", error);
+      alert("Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.");
+    });
+
+
+    event.preventDefault();
+}
+
+// Adiciona um listener de evento ao formulário para chamar a função fazerLogin ao ser enviado
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Impede o envio padrão do formulário
+  fazerLogin();
+});
+
+         </script>
+
+    </body>
+</html>

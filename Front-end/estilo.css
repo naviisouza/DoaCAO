@@ -1,0 +1,36 @@
+body{
+    background-color:#F6F6F6;
+    ;
+}
+.text-center img{
+margin: 10px;
+width: 250px;
+height: 250px;
+}
+/*#FFFFFF*/
+.texto p{
+    color: #66927E;
+    text-align: center;
+    font-size: 52px;
+    font-family:Arial, Helvetica, sans-serif
+}
+.botoes_acesso{
+    
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+.botoes_acesso button{
+    justify-content: center;
+    background-color: #66927E;
+    color: #FBEA7B;
+    text-align: center;
+    font-size: 22px;
+    border: #FFFF;
+}
+
+.botoes_acesso a{
+    text-decoration: none;
+    text-decoration-color: #FBEA7B;
+    color: #FBEA7B;
+}

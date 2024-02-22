@@ -1,0 +1,165 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+   
+}
+
+.sidenav {
+    height: 100%;
+    background-color: #F6F6F6;
+    overflow-x: hidden;
+    /*padding-top: 20px;*/
+}
+
+.text-center img{
+    margin: 10px;
+    width: 250px;
+    height: 250px;
+    }
+
+.rounded img{
+    width: 300px;
+    height: 300px;
+    margin-left: 150px;
+}
+
+.button-login{
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    color: #66927E;
+}
+
+.button-login button{
+    justify-content: center;
+    background-color: #FBEA7B;
+    color: #66927E;
+    text-align: center;
+    font-size: 22px;
+    border: #66927E;
+}
+
+.button-login a{
+    text-decoration: none;
+    text-decoration-color: #66927E;
+    color: #66927E;
+}
+
+.main {
+    padding: 0px 0px;
+
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+    .login-form{
+        margin-top: 10%;
+    }
+
+    .register-form{
+        margin-top: 10%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 50%; 
+    }
+
+    .sidenav{
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+    }
+
+
+    .register-form{
+        margin-top: 20%;
+    }
+}
+
+.cadastro-titulo{
+    background-color: #66927E;
+    width: 100%;
+    height: 150px;
+    padding: 0% !important;
+}
+
+.text-titulo h2{
+    color: #FBEA7B;
+    text-align: center;
+    padding-top: 7%;
+    font-size: 40px;
+    /*margin-bottom: 30px;*/
+}
+
+.text-titulo p{
+    color: #FBEA7B;
+    text-align: center;
+}
+
+
+.login-main-text{
+    padding: 10px;
+    text-align: center;
+}
+
+.login-main-text h2{
+    font-weight: 700;
+    color: #66927E;
+}
+
+
+.login-main-text p{
+    color: #66927E;
+}
+
+.btn-lg{
+    background-color: #66927E;
+    color: #fff;
+    border: #fff;
+    text-align: center !important;
+    justify-content: center !important;
+    margin-top: 1px;
+}
+
+.btn-lg a{
+    text-decoration: none;
+    text-decoration-color: #ffff;
+    color: #ffff !important;
+    font-size: 20px !important;
+}
+
+.form-group{
+    margin-left: 50%;
+    width: 100%;
+}
+
+
+.form-group label{
+    color: #8F8E8E;
+    font-size: 12px;
+}
+
+.form-group a{
+    color: #8F8E8E;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+
+.form-group select{
+    color: #8F8E8E;
+    font-size: 15px;
+}

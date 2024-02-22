@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <title>Cadastro Cliente - Doa Cão</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" type="text/css" href="estiloformularios.css">
+        <link rel="icon" href="Imagens/logo.png">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+        <div class="sidenav">
+            <div class="text-center">
+                <img src="Imagens/logo.png" class="rounded" alt="...">
+              </div>
+            <div class="rounded float-start">
+               <img src="Imagens/telas patinhas.png" class="rounded" alt="...">
+         </div>
+         
+        </div>
+         <div class="main">
+            <div class=" cadastro-titulo">
+                <div class="text-titulo">
+                   <h2>Vamos cadastrar uma nova conta.</h2>
+                </div>
+            <div class="col-md-6 col-sm-12">
+               <div class="login-form">
+                  <br><br><br>
+                  <form id="cadastroForm">
+                     <div class="form-group">
+                        <label>Digite sua senha</label>
+                        <input id="senha" type="password" class="form-control" placeholder="*********">
+                        <label>Confirme a sua senha</label>
+                        <input id="confirmaSenha" type="password" class="form-control" placeholder="*********">
+                        <br>
+                        <div class ="d-grid  col-12 mx-auto">
+                           <button onclick="cadastraContaCliente()" type="submit" class="btn-lg">Cadastrar</button>
+                        </div>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+
+
+         <script>
+
+            function cadastraContaCliente(){
+
+               const nome = localStorage.getItem("nome")
+               const email = localStorage.getItem("email")
+               const tel = localStorage.getItem("tel")
+               const senha = document.getElementById("senha").value
+               const confirmaSenha = document.getElementById("confirmaSenha").value
+
+
+
+               const cadastro = {
+                  name: nome,
+                  email:email,
+                  password:senha,
+                  confirmPassword: confirmaSenha,
+                  phone: tel
+               }
+
+               console.log(cadastro)
+
+                              fetch("https://api-doacao.onrender.com/api/auth/register", {
+               method: "POST",
+               headers: {
+                  "Content-Type": "application/json"
+               },
+               body: JSON.stringify(cadastro)
+               })
+               .then(response => response.json())
+               .then(data => {
+                  console.log("Resposta da API:", data);
+                  alert(data.msg)
+                  window.location.href = "loginCliente.html";
+                  localStorage.removeItem("nome");
+                  localStorage.removeItem("email");
+                  localStorage.removeItem("tel");
+
+                  // Faça algo com a resposta da API aqui
+               })
+               .catch(error => {
+                  console.log("Ocorreu um erro durante o registro:", error);
+                  alert("Erro ao criar usuário")
+                  window.location.href = "cadastroCliente.html";
+               });
+
+               event.preventDefault();
+
+            }
+
+
+
+            document.getElementById("cadastroForm").addEventListener("submit", function(event) {
+            cadastraContaCliente();
+    });
+         </script>
+
+
+    </body>
+</html>
